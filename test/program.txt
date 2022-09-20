@@ -1,0 +1,8 @@
+inventory
+  hp number
+  hp numberSquared
+glhf
+  feed number
+  numberSquared = number * number
+  chat numberSquared
+RAGEQUIT
