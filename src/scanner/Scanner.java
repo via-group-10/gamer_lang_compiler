@@ -1,5 +1,8 @@
 package scanner;
 
+import tokens.Token;
+import tokens.TokenKind;
+
 public class Scanner
 {
      private SourceFile source;

@@ -1,4 +1,4 @@
-package scanner;
+package tokens;
 
 
 public class Token
@@ -13,13 +13,6 @@ public class Token
           this.spelling = spelling;
 
           if( kind == TokenKind.IDENTIFIER )
-/*
-			for( byte i = 0; i < SPELLINGS.length; ++i )
-				if( spelling.equals( SPELLINGS[i] ) ) {
-					this.kind = i;
-					break;
-				}
-*/
                for( TokenKind tk: KEYWORDS )
                     if( spelling.equals( tk.getSpelling() ) ) {
                          this.kind = tk;

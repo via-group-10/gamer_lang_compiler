@@ -1,8 +1,13 @@
-package scanner;
+package compiler;
+
+import scanner.Scanner;
+import scanner.SourceFile;
+import tokens.Token;
+import tokens.TokenKind;
 
 import javax.swing.*;
 
-public class ScannerTest
+public class Compiler
 {
      private static final String EXAMPLES_DIR = "C:\\Users\\anton\\OneDrive - ViaUC\\Semester 6 and 7\\CMC1\\gamer_lang_compiler\\test";
 
@@ -17,8 +22,8 @@ public class ScannerTest
 
                TokenKind k;
                do {
-                  Token t = s.scan();
-                  k = t.kind;
+                    Token t = s.scan();
+                    k = t.kind;
                     System.out.println(k + " " + t.spelling);
                } while (k != TokenKind.EOF);
           }
