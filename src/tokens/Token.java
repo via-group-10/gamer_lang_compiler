@@ -45,17 +45,25 @@ public class Token
                return false;
      }
 
-
-     private boolean containsOperator( String spelling, String OPS[] )
+     public boolean isComOperator()
      {
-          for( int i = 0; i < OPS.length; ++i )
-               if( spelling.equals( OPS[i] ) )
+          if( kind == TokenKind.OPERATOR )
+               return containsOperator( spelling, COMPOPS );
+          else
+               return false;
+     }
+
+
+     private boolean containsOperator( String spelling, String[] OPS )
+     {
+          for (String op : OPS)
+               if (spelling.equals(op))
                     return true;
 
           return false;
      }
 
-     private static final TokenKind[] KEYWORDS = { TokenKind.INVENTORY, TokenKind.GLHF, TokenKind.RAGEQUIT, TokenKind.HP, TokenKind.MANA, TokenKind.NPC, TokenKind.OP, TokenKind.PVP, TokenKind.PVE, TokenKind.COOLDOWN, TokenKind.PATCH, TokenKind.CHAT, TokenKind.FEED };
+     private static final TokenKind[] KEYWORDS = { TokenKind.INVENTORY, TokenKind.GLHF, TokenKind.RAGEQUIT, TokenKind.HP, TokenKind.MANA, TokenKind.NPC, TokenKind.OP, TokenKind.PVP, TokenKind.PVE, TokenKind.COOLDOWN, TokenKind.PATCH, TokenKind.CHAT, TokenKind.FEED, TokenKind.MVP, TokenKind.BUFF };
 
 
      private static final String ASSIGNOPS[] =

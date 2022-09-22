@@ -5,7 +5,7 @@ inventory
   hp area !!!
 glhf
   feed shape !!!
-  op shape == 't' !!!
+  op shape == 't'
   pvp
     area = side1 * side2 / 2 !!!
   pve
@@ -13,13 +13,13 @@ glhf
     pvp
       area = side1 * side1 !!!
     pve
-      op shape == 'r' !!!
+      op shape == 'r'
       pvp
         area = side1 * side2 !!!
       pve
         area = 0 !!!
-      cooldown
-    cooldown
-  cooldown
+      cooldown !!!
+    cooldown !!!
+  cooldown !!!
   chat area !!!
 RAGEQUIT

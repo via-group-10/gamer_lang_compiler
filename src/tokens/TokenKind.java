@@ -20,13 +20,15 @@ public enum TokenKind
      PATCH("patch"),
      CHAT("chat"),
      FEED("feed"),
+     MVP("mvp"),
+     BUFF("buff"),
 
      EOF,
 
      COMMA( "," ),
      TRIPLEEXCLAMATIONMARK( "!!!" ),
-     LEFTPARAN( "(" ),
-     RIGHTPARAN( ")" ),
+     LEFTPAREN( "(" ),
+     RIGHTPAREN( ")" ),
 
 
      ERROR;

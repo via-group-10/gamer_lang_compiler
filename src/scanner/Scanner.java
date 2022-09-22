@@ -22,7 +22,7 @@ public class Scanner
                currentChar == ' ' ) {
                scanSeparator();
           }
-          currentSpelling = new StringBuffer( "" );
+          currentSpelling = new StringBuffer();
           TokenKind kind = scanToken();
 
           return new Token( kind, new String( currentSpelling ) );
@@ -51,23 +51,15 @@ public class Scanner
 
      private void scanSeparator()
      {
-          switch(currentChar)
-          {
-               case '?':
+          switch (currentChar) {
+               case '?' -> {
                     takeIt();
-                    while (currentChar != source.EOL && currentChar != source.EOF)
+                    while (currentChar != SourceFile.EOL && currentChar != SourceFile.EOF)
                          takeIt();
-
-                    if (currentChar == source.EOL)
+                    if (currentChar == SourceFile.EOL)
                          takeIt();
-                    break;
-
-               case ' ':
-               case '\n':
-               case '\r':
-               case '\t':
-                    takeIt();
-                    break;
+               }
+               case ' ', '\n', '\r', '\t' -> takeIt();
           }
      }
 
@@ -140,10 +132,10 @@ public class Scanner
                     return TokenKind.ERROR;
                case '(':
                     takeIt();
-                    return TokenKind.LEFTPARAN;
+                    return TokenKind.LEFTPAREN;
                case ')':
                     takeIt();
-                    return TokenKind.RIGHTPARAN;
+                    return TokenKind.RIGHTPAREN;
                case SourceFile.EOF:
                     return TokenKind.EOF;
                default:

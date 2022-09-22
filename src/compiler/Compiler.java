@@ -1,9 +1,8 @@
 package compiler;
 
+import parser.Parser;
 import scanner.Scanner;
 import scanner.SourceFile;
-import tokens.Token;
-import tokens.TokenKind;
 
 import javax.swing.*;
 
@@ -19,13 +18,8 @@ public class Compiler
           {
                SourceFile sourceFile = new SourceFile(fc.getSelectedFile().getAbsolutePath());
                Scanner s = new Scanner(sourceFile);
-
-               TokenKind k;
-               do {
-                    Token t = s.scan();
-                    k = t.kind;
-                    System.out.println(k + " " + t.spelling);
-               } while (k != TokenKind.EOF);
+               Parser p = new Parser(s);
+               p.parseProgram();
           }
      }
 }
