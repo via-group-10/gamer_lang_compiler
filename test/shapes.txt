@@ -1,0 +1,28 @@
+inventory
+  mana shape !!!
+  hp side1 !!!
+  hp side2 !!!
+  hp area !!!
+glhf
+  feed shape !!!
+  op shape == 't' !!!
+  pvp
+    area = side1 * side2 / 2 !!!
+  cooldown
+  pve
+    op shape == 's'
+    pvp
+      area = side1 * side1 !!!
+    cooldown
+    pve
+      op shape == 'r' !!!
+      pvp
+        area = side1 * side2 !!!
+      cooldown
+      pve
+        area = 0 !!!
+      cooldown
+    cooldown
+  cooldown
+  chat area !!!
+RAGEQUIT
