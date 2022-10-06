@@ -28,7 +28,7 @@ public enum TokenKind
      COMMA( "," ),
      TRIPLEEXCLAMATIONMARK( "!!!" ),
      LEFTPAREN( "(" ),
-     RIGHTPAREN( ")" ),
+     RIGHTPAREN(")"),
 
 
      ERROR;

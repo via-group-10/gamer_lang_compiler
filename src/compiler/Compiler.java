@@ -1,6 +1,7 @@
 package compiler;
 
 import parser.Parser;
+import parser.ast.AbstractSyntaxTree;
 import scanner.Scanner;
 import scanner.SourceFile;
 
@@ -19,7 +20,7 @@ public class Compiler
                SourceFile sourceFile = new SourceFile(fc.getSelectedFile().getAbsolutePath());
                Scanner s = new Scanner(sourceFile);
                Parser p = new Parser(s);
-               p.parseProgram();
+               AbstractSyntaxTree ast = p.parseProgram();
           }
      }
 }

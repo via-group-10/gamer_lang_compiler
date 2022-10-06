@@ -1,6 +1,9 @@
 package parser;
 
 import exceptions.TokenMismatchException;
+import parser.ast.AbstractSyntaxTree;
+import parser.grammar.GrammarVisitor;
+import parser.grammar.ProgramVisitor;
 import scanner.Scanner;
 import tokens.Token;
 import tokens.TokenKind;
@@ -21,24 +24,23 @@ public class Parser
           currentPosition = 0;
      }
 
-     public boolean parseProgram()
+     public AbstractSyntaxTree parseProgram()
      {
           try
           {
-               accept(new ProgramVisitor());
-               return true;
+               return accept(new ProgramVisitor());
           }
           catch (TokenMismatchException tme)
           {
                System.out.println(tme.getMessage());
-               return false;
+               return null;
           }
      }
 
      ///MUST BE THAT
-     public void accept(GrammarVisitor visitor)
+     public <T extends AbstractSyntaxTree> T accept(GrammarVisitor<T> visitor)
      {
-          visitor.visit(this);
+          return visitor.visit(this);
      }
 
      ///MUST BE OF TOKEN and moves to next
