@@ -5,15 +5,15 @@ public class FunctionExpression extends Expression
      private Identifier identifier;
      private ExpressionList arguments;
 
-     public FunctionExpression(String identifier, ExpressionList arguments)
+     public FunctionExpression(Identifier identifier, ExpressionList arguments)
      {
-          this.identifier = new Identifier(null, identifier);
+          this.identifier = identifier;
           this.arguments = arguments;
      }
 
-     public FunctionExpression(String identifier)
+     public FunctionExpression(Identifier identifier)
      {
-          this.identifier = new Identifier(null, identifier);
+          this.identifier = identifier;
      }
 
      public Identifier getIdentifier()

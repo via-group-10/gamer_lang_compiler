@@ -4,24 +4,31 @@ import tokens.TokenKind;
 
 public class TokenMismatchException extends RuntimeException
 {
-     private TokenKind[] expectedTokenKind;
-     private TokenKind actualTokenKind;
+     private String expectedTokenKind;
+     private String actualTokenKind;
      private long position;
 
      public TokenMismatchException(long position, TokenKind actualTokenKind, TokenKind... expectedTokenKind)
      {
           this.position = position;
-          this.expectedTokenKind = expectedTokenKind;
+          this.expectedTokenKind = expectedTokenKindsToString(expectedTokenKind);
+          this.actualTokenKind = actualTokenKind.toString();
+     }
+
+     public TokenMismatchException(long position, String actualTokenKind, String expectedTokenKind)
+     {
+          this.position = position;
           this.actualTokenKind = actualTokenKind;
+          this.expectedTokenKind = expectedTokenKind;
      }
 
      @Override
      public String getMessage()
      {
-          return "Unexpected token: " + actualTokenKind.toString() + " at position " + position + ". Expected: " + expectedTokenKindsToString();
+          return "Unexpected token: " + actualTokenKind + " at position " + position + ". Expected: " + expectedTokenKind;
      }
 
-     private String expectedTokenKindsToString()
+     private String expectedTokenKindsToString(TokenKind[] expectedTokenKind)
      {
           StringBuilder resultStr = new StringBuilder();
           for (TokenKind tk : expectedTokenKind)

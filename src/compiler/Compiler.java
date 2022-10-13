@@ -2,6 +2,7 @@ package compiler;
 
 import parser.Parser;
 import parser.ast.AbstractSyntaxTree;
+import parser.ast.AbstractSyntaxTreeViewer;
 import scanner.Scanner;
 import scanner.SourceFile;
 
@@ -21,6 +22,8 @@ public class Compiler
                Scanner s = new Scanner(sourceFile);
                Parser p = new Parser(s);
                AbstractSyntaxTree ast = p.parseProgram();
+               AbstractSyntaxTreeViewer astv = new AbstractSyntaxTreeViewer(ast);
+
           }
      }
 }

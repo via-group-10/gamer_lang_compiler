@@ -1,8 +1,7 @@
 package parser.grammar;
 
 import parser.Parser;
-import parser.ast.Expression;
-import parser.ast.ExpressionList;
+import parser.ast.*;
 import tokens.TokenKind;
 
 public class ExpressionListVisitor implements GrammarVisitor<ExpressionList>

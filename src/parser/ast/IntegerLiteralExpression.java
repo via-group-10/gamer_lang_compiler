@@ -2,15 +2,15 @@ package parser.ast;
 
 public class IntegerLiteralExpression extends Expression
 {
-     private String integer;
+     private IntegerLiteral integer;
 
-     public IntegerLiteralExpression(String integer)
+     public IntegerLiteralExpression(IntegerLiteral integer)
      {
 
           this.integer = integer;
      }
 
-     public String getSpelling()
+     public IntegerLiteral getIntegerLiteral()
      {
           return integer;
      }

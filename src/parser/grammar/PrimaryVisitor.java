@@ -25,9 +25,14 @@ public class PrimaryVisitor implements GrammarVisitor<Expression>
           Expression expression = null;
           Token current = parser.getCurrentToken();
           switch (current.kind) {
+               case BUFF -> {
+                    String buffSpelling = parser.getCurrentToken().spelling;
+                    parser.accept(TokenKind.BUFF);
+                    expression = parser.accept(new PrimaryVisitor());
+                    expression = new UnaryExpression(buffSpelling, expression);
+               }
                case IDENTIFIER -> {
-                    String identifierName = current.spelling;
-                    parser.next();
+                    Identifier identifier = parser.accept(new IdentifierVisitor());
 
                     ExpressionList expressionList;
                     if (parser.isCurrentTokenOfKind(TokenKind.LEFTPAREN)) {
@@ -36,26 +41,28 @@ public class PrimaryVisitor implements GrammarVisitor<Expression>
                               TokenKind.INTEGERLITERAL, TokenKind.CHARACTERLITERAL,
                               TokenKind.LEFTPAREN, TokenKind.BUFF)) {
                               expressionList = parser.accept(new ExpressionListVisitor());
-                              expression = new FunctionExpression(identifierName, expressionList);
+                              expression = new FunctionExpression(identifier, expressionList);
                          }
                          else {
-                              expression = new FunctionExpression(identifierName);
+                              expression = new FunctionExpression(identifier);
                          }
                          parser.accept(TokenKind.RIGHTPAREN);
                     }
                     else {
-                         expression = new VariableExpression(identifierName);
+                         expression = new VariableExpression(identifier);
                     }
                }
                case INTEGERLITERAL -> {
-                    new IntegerLiteralExpression(current.spelling);
-                    parser.next();
+                    expression = new IntegerLiteralExpression(parser.accept(new IntegerLiteralVisitor()));
                }
                case CHARACTERLITERAL -> {
-                    new CharacterLiteralExpression(current.spelling);
-                    parser.next();
+                    expression = new CharacterLiteralExpression(parser.accept(new CharacterLiteralVisitor()));
                }
-               case LEFTPAREN -> parser.accept(new ExpressionVisitor());
+               case LEFTPAREN -> {
+                    parser.accept(TokenKind.LEFTPAREN);
+                    expression = parser.accept(new ExpressionVisitor());
+                    parser.accept(TokenKind.RIGHTPAREN);
+               }
           }
           return expression;
      }

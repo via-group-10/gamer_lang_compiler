@@ -4,9 +4,9 @@ public class VariableExpression extends Expression
 {
      private Identifier identifier;
 
-     public VariableExpression(String identifier)
+     public VariableExpression(Identifier identifier)
      {
-          this.identifier = new Identifier(null, identifier);
+          this.identifier = identifier;
      }
 
      public Identifier getIdentifier()

@@ -3,8 +3,6 @@ package parser.grammar;
 import parser.Parser;
 import parser.ast.AbstractSyntaxTree;
 import parser.ast.Block;
-import parser.ast.Declarations;
-import parser.ast.Statements;
 import tokens.TokenKind;
 
 public class BlockVisitor implements GrammarVisitor<Block>
@@ -13,7 +11,7 @@ public class BlockVisitor implements GrammarVisitor<Block>
      public Block visit(Parser parser)
      {
           AbstractSyntaxTree declarations = null;
-          AbstractSyntaxTree statements = null;
+          AbstractSyntaxTree statements;
 
           if (parser.isCurrentTokenOfKind(TokenKind.INVENTORY))
           {

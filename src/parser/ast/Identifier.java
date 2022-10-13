@@ -3,26 +3,15 @@ package parser.ast;
 public class Identifier extends Terminal
 {
      private String type;
-     private String identifier;
 
-     public Identifier(String type, String identifier)
+     public Identifier(String type, String name)
      {
+          super(name);
           this.type = type;
-          this.identifier = identifier;
-     }
-
-     public Identifier(String identifier)
-     {
-          this.identifier = identifier;
      }
 
      public String getType()
      {
           return type;
-     }
-
-     public String getIdentifier()
-     {
-          return identifier;
      }
 }

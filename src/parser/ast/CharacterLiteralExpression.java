@@ -2,11 +2,15 @@ package parser.ast;
 
 public class CharacterLiteralExpression extends Expression
 {
-     private String character;
+     private CharacterLiteral characterLiteral;
 
-     public CharacterLiteralExpression(String character)
+     public CharacterLiteralExpression(CharacterLiteral characterLiteral)
      {
 
-          this.character = character;
+          this.characterLiteral = characterLiteral;
+     }
+
+     public CharacterLiteral getCharacterLiteral() {
+          return characterLiteral;
      }
 }

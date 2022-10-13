@@ -57,6 +57,10 @@ public class Parser
           return currentToken;
      }
 
+     public long getCurrentPosition() {
+          return currentPosition;
+     }
+
      //checks if token is of the kind
      public boolean isCurrentTokenOfKind(TokenKind... tokenKinds)
      {
