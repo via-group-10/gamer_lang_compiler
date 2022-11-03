@@ -10,7 +10,7 @@ import javax.swing.*;
 
 public class Compiler
 {
-     private static final String EXAMPLES_DIR = "C:\\Users\\anton\\OneDrive - ViaUC\\Semester 6 and 7\\CMC1\\gamer_lang_compiler\\test";
+     private static final String EXAMPLES_DIR = "test";
 
      public static void main(String[] args)
      {
