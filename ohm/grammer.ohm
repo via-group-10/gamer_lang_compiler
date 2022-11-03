@@ -1,0 +1,67 @@
+GamerLang{
+  Block 
+    = "inventory" Declarations "glhf" Statements "RAGEQUIT" -- withDeclarations
+    | "glhf" Statements "RAGEQUIT" -- withoutDeclarations
+ 	
+  Declarations
+    = OneDeclaration +
+
+  OneDeclaration
+    = "hp" Identifier "!!!" -- number
+    | "mana" Identifier "!!!" -- char
+    | "npc" Identifier "(" ")" Block "MVP" Expression -- function
+    | "npc" Identifier "(" ArgList ")" Block "MVP" Expression -- functionWithArgs
+
+  ArgList 
+    = "hp" Identifier ArgListTail * -- number
+    | "mana" Identifier ArgListTail * -- char
+
+  ArgListTail
+    = "," "hp" Identifier ArgListTail -- number
+    | "," "mana" Identifier ArgListTail -- char
+
+  Statements
+    = OneStatement *
+
+  OneStatement
+    = "op" Expression "pvp" Statements "cooldown" "!!!" -- if
+    | "op" Expression "pvp" Statements "pve" Statements "cooldown" "!!!" -- ifElse
+    | "patch" Expression "glhf" Statements "RAGEQUIT" "!!!" -- while
+    | "chat" Expression "!!!" -- print
+    | "feed" Expression "!!!" -- read
+    | Expression "!!!" -- singleExpression
+
+  Expression
+    = Primary 
+    | Expression Operator Primary -- a
+    | Operator Identifier -- b
+
+  Primary
+    = Identifier 
+    | Identifier "(" ExpressionList ")" -- a
+    | IntegerLiteral -- b
+    | CharacterLiteral -- c
+    | ( Expression ) -- d
+
+  ExpressionList
+    = Expression ExpressionListTail
+
+  ExpressionListTail
+    = "," Expression ExpressionListTail
+
+  Identifier
+    = letter IdentifierPartial *
+
+  IdentifierPartial
+    = letter | digit
+
+  Operator
+    = "+" | "-" | "*" |  "/" | "=" | "==" | "!"
+
+  IntegerLiteral = digit*
+
+  CharacterLiteral = letter* 
+}
+
+
+
