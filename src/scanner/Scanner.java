@@ -1,5 +1,6 @@
 package scanner;
 
+import parser.ast.PatchStatement;
 import tokens.Token;
 import tokens.TokenKind;
 
@@ -52,12 +53,16 @@ public class Scanner
      private void scanSeparator()
      {
           switch (currentChar) {
-               case '?' -> {
+               case '$' -> {
                     takeIt();
-                    while (currentChar != SourceFile.EOL && currentChar != SourceFile.EOF)
+                    while (currentChar != SourceFile.EOL && currentChar != SourceFile.EOF) {
                          takeIt();
-                    if (currentChar == SourceFile.EOL)
-                         takeIt();
+                         if (currentChar == SourceFile.EOL)
+                         {
+                              takeIt();
+                              break;
+                         }
+                    }
                }
                case ' ', '\n', '\r', '\t' -> takeIt();
           }

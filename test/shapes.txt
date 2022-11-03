@@ -7,7 +7,7 @@ glhf
   feed shape !!!
   op shape == 't'
   pvp
-    area = side1 * side2 / 2 !!!
+    area = 5 + side1 * side2 / 2 !!!
   pve
     op shape == 's'
     pvp
