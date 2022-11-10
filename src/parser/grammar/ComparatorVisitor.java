@@ -2,9 +2,9 @@ package parser.grammar;
 
 import exceptions.TokenMismatchException;
 import parser.Parser;
-import parser.ast.BinaryExpression;
-import parser.ast.Expression;
-import parser.ast.Operator;
+import ast.BinaryExpression;
+import ast.Expression;
+import ast.Operator;
 import tokens.TokenKind;
 
 public class ComparatorVisitor implements GrammarVisitor<Expression> {

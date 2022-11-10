@@ -1,7 +1,7 @@
 package parser.grammar;
 
 import parser.Parser;
-import parser.ast.Operator;
+import ast.Operator;
 import tokens.TokenKind;
 
 public class OperatorVisitor implements GrammarVisitor<Operator> {

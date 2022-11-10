@@ -1,9 +1,9 @@
 package parser.grammar;
 
 import parser.Parser;
-import parser.ast.*;
 import tokens.Token;
 import tokens.TokenKind;
+import ast.*;
 
 public class PrimaryVisitor implements GrammarVisitor<Expression>
 {

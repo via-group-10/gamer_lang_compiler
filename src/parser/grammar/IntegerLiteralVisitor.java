@@ -1,7 +1,7 @@
 package parser.grammar;
 
 import parser.Parser;
-import parser.ast.IntegerLiteral;
+import ast.IntegerLiteral;
 import tokens.TokenKind;
 
 public class IntegerLiteralVisitor implements GrammarVisitor<IntegerLiteral> {

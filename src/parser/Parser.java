@@ -1,7 +1,7 @@
 package parser;
 
 import exceptions.TokenMismatchException;
-import parser.ast.AbstractSyntaxTree;
+import ast.*;
 import parser.grammar.GrammarVisitor;
 import parser.grammar.ProgramVisitor;
 import scanner.Scanner;
@@ -24,7 +24,7 @@ public class Parser
           currentPosition = 0;
      }
 
-     public AbstractSyntaxTree parseProgram()
+     public Program parseProgram()
      {
           try
           {

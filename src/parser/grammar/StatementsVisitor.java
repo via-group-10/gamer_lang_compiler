@@ -1,8 +1,8 @@
 package parser.grammar;
 
 import parser.Parser;
-import parser.ast.AbstractSyntaxTree;
-import parser.ast.Statements;
+import ast.AbstractSyntaxTree;
+import ast.Statements;
 import tokens.TokenKind;
 
 public class StatementsVisitor implements GrammarVisitor<Statements>

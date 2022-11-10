@@ -1,6 +1,6 @@
 package scanner;
 
-import parser.ast.PatchStatement;
+import ast.PatchStatement;
 import tokens.Token;
 import tokens.TokenKind;
 

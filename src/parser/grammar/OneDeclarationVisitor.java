@@ -1,9 +1,10 @@
 package parser.grammar;
 
+import ast.Declaration;
 import parser.Parser;
-import parser.ast.*;
 import tokens.Token;
 import tokens.TokenKind;
+import ast.*;
 
 public class OneDeclarationVisitor implements GrammarVisitor<Declaration>
 {

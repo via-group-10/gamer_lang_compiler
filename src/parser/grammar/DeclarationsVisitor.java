@@ -1,7 +1,10 @@
 package parser.grammar;
 
+import ast.AbstractSyntaxTreeVisitor;
+import ast.Block;
+import ast.Program;
 import parser.Parser;
-import parser.ast.Declarations;
+import ast.Declarations;
 import tokens.TokenKind;
 
 public class DeclarationsVisitor implements GrammarVisitor<Declarations>
@@ -16,4 +19,6 @@ public class DeclarationsVisitor implements GrammarVisitor<Declarations>
           }
           return declarations;
      }
+
+
 }

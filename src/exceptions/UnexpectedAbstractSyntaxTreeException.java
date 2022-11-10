@@ -1,6 +1,6 @@
 package exceptions;
 
-import parser.ast.AbstractSyntaxTree;
+import ast.AbstractSyntaxTree;
 
 import java.lang.reflect.Type;
 

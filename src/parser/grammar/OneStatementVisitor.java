@@ -1,7 +1,7 @@
 package parser.grammar;
 
+import ast.*;
 import parser.Parser;
-import parser.ast.*;
 import tokens.Token;
 import tokens.TokenKind;
 

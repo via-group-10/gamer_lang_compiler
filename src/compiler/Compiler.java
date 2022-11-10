@@ -1,8 +1,10 @@
 package compiler;
 
+import ast.Program;
+import checker.Checker;
 import parser.Parser;
-import parser.ast.AbstractSyntaxTree;
-import parser.ast.AbstractSyntaxTreeViewer;
+import ast.AbstractSyntaxTree;
+import ast.AbstractSyntaxTreeViewer;
 import scanner.Scanner;
 import scanner.SourceFile;
 
@@ -21,9 +23,17 @@ public class Compiler
                SourceFile sourceFile = new SourceFile(fc.getSelectedFile().getAbsolutePath());
                Scanner s = new Scanner(sourceFile);
                Parser p = new Parser(s);
-               AbstractSyntaxTree ast = p.parseProgram();
-               AbstractSyntaxTreeViewer astv = new AbstractSyntaxTreeViewer(ast);
+               Program program = p.parseProgram();
+               AbstractSyntaxTreeViewer astv = new AbstractSyntaxTreeViewer(program);
+
+               Checker checker = new Checker();
+               checker.check( program );
+
 
           }
+
+
+
+
      }
 }

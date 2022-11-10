@@ -1,9 +1,9 @@
 package parser.grammar;
 
 import parser.Parser;
-import parser.ast.Declaration;
-import parser.ast.Declarations;
-import parser.ast.VariableDeclaration;
+import ast.Declaration;
+import ast.Declarations;
+import ast.VariableDeclaration;
 import tokens.Token;
 import tokens.TokenKind;
 

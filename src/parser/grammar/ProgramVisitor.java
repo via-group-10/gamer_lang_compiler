@@ -1,8 +1,8 @@
 package parser.grammar;
 
 import parser.Parser;
-import parser.ast.Block;
-import parser.ast.Program;
+import ast.Block;
+import ast.Program;
 import tokens.TokenKind;
 
 public class ProgramVisitor implements GrammarVisitor<Program>

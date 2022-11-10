@@ -1,8 +1,8 @@
 package parser.grammar;
 
 import parser.Parser;
-import parser.ast.AbstractSyntaxTree;
-import parser.ast.Block;
+import ast.AbstractSyntaxTree;
+import ast.Block;
 import tokens.TokenKind;
 
 public class BlockVisitor implements GrammarVisitor<Block>

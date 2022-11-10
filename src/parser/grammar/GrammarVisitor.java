@@ -1,7 +1,7 @@
 package parser.grammar;
 
 import parser.Parser;
-import parser.ast.AbstractSyntaxTree;
+import ast.AbstractSyntaxTree;
 
 public interface GrammarVisitor<T extends AbstractSyntaxTree>
 {
