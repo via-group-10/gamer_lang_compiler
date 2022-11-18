@@ -17,7 +17,6 @@ public class Program extends AbstractSyntaxTree
 
      @Override
      public Object accept(AbstractSyntaxTreeVisitor v, Object arg) {
-          v.visit(this, arg);
-          return null;
+          return v.visit(this, arg);
      }
 }

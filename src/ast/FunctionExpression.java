@@ -4,15 +4,6 @@ public class FunctionExpression extends Expression
 {
      private Identifier identifier;
      private ExpressionList arguments;
-
-     public FunctionDeclaration getFunctionDeclaration() {
-          return functionDeclaration;
-     }
-
-     public void setFunctionDeclaration(FunctionDeclaration functionDeclaration) {
-          this.functionDeclaration = functionDeclaration;
-     }
-
      private FunctionDeclaration functionDeclaration;
 
 
@@ -27,6 +18,15 @@ public class FunctionExpression extends Expression
           this.identifier = identifier;
      }
 
+     public FunctionDeclaration getFunctionDeclaration() {
+          return functionDeclaration;
+     }
+
+     public void setFunctionDeclaration(FunctionDeclaration functionDeclaration) {
+          this.functionDeclaration = functionDeclaration;
+          this.identifier.setDeclaration(functionDeclaration);
+     }
+
      public Identifier getIdentifier()
      {
           return identifier;
@@ -39,6 +39,6 @@ public class FunctionExpression extends Expression
 
      @Override
      public Object accept(AbstractSyntaxTreeVisitor v, Object arg) {
-          return null;
+          return v.visit(this, arg);
      }
 }

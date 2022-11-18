@@ -28,12 +28,7 @@ public class Compiler
 
                Checker checker = new Checker();
                checker.check( program );
-
-
+               System.out.println(program);
           }
-
-
-
-
      }
 }

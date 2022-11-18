@@ -21,10 +21,11 @@ public class VariableExpression extends Expression
 
      public void setVariableDeclaration(VariableDeclaration variableDeclaration) {
           this.variableDeclaration = variableDeclaration;
+          this.identifier.setDeclaration(variableDeclaration);
      }
 
      @Override
      public Object accept(AbstractSyntaxTreeVisitor v, Object arg) {
-          return null;
+          return v.visit(this, arg);
      }
 }

@@ -79,7 +79,9 @@ public class Checker implements AbstractSyntaxTreeVisitor {
     @Override
     //tiez neviem ci dobre
     public Object visit(FeedStatement feedStatement, Object arg) {
-        feedStatement.getIdentifier().accept(this, null);
+        String identifierName = (String) feedStatement.getIdentifier().accept(this, null);
+        Declaration declaration = identificationTable.retrieve(identifierName);
+        feedStatement.getIdentifier().setDeclaration(declaration);
         return null;
     }
 
@@ -156,6 +158,7 @@ public class Checker implements AbstractSyntaxTreeVisitor {
         else {
             throw new ContextualException(identifierName + " is not a function");
         }
+        variableExpression.setType(declaration.getType());
         return declaration.getType();
     }
 
