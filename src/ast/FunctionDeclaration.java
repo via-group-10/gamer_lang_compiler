@@ -6,9 +6,9 @@ public class FunctionDeclaration extends Declaration
      private Block block;
      private Expression mvpExpression;
 
-     public FunctionDeclaration(String type, String identifier)
+     public FunctionDeclaration(Identifier identifier, Type type)
      {
-          super(type, identifier);
+          super(identifier, type);
      }
 
      public Declarations getArguments()
@@ -43,6 +43,6 @@ public class FunctionDeclaration extends Declaration
 
      @Override
      public Object accept(AbstractSyntaxTreeVisitor v, Object arg) {
-          return null;
+          return v.visit(this,null);
      }
 }

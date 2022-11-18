@@ -8,25 +8,15 @@ public class Block extends AbstractSyntaxTree
      private Statements statements;
 
 
-     public Block(AbstractSyntaxTree statements)
+     public Block(Statements statements)
      {
-          if (statements instanceof Statements)
-               this.statements = (Statements) statements;
-          else
-               throw new UnexpectedAbstractSyntaxTreeException(statements, Statements.class);
+          this.statements = statements;
      }
 
-     public Block(AbstractSyntaxTree statements, AbstractSyntaxTree declarations)
+     public Block(Statements statements, Declarations declarations)
      {
-          if (statements instanceof Statements)
-               this.statements = (Statements) statements;
-          else
-               throw new UnexpectedAbstractSyntaxTreeException(statements, Statements.class);
-
-          if (declarations instanceof Declarations)
-               this.declarations = (Declarations) declarations;
-          else
-               throw new UnexpectedAbstractSyntaxTreeException(declarations, Declarations.class);
+          this.statements = statements;
+          this.declarations = declarations;
      }
 
      public Declarations getDeclarations()
@@ -45,7 +35,8 @@ public class Block extends AbstractSyntaxTree
      }
 
      @Override
-     public Object accept(AbstractSyntaxTreeVisitor v, Object arg) {
-          return null;
+     public Object accept(AbstractSyntaxTreeVisitor visitor, Object arg) {
+          //logika blocku...
+          return visitor.visit(this, arg);
      }
 }

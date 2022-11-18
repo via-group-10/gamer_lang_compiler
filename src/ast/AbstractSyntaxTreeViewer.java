@@ -103,7 +103,7 @@ public class AbstractSyntaxTreeViewer extends JFrame {
             for (Expression e : el.getAllExpressions())
                 node.add(createTree(e));
         } else if (ast instanceof Identifier id) {
-            node.setUserObject("Identifier " + id.getName() + " " + id.getType());
+            node.setUserObject("Identifier " + id.getName());
         } else if (ast instanceof IntegerLiteral il) {
             node.setUserObject("IntegerLiteral " + il.getName());
         } else if (ast instanceof CharacterLiteral cl) {

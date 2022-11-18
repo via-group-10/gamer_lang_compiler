@@ -3,15 +3,16 @@ package ast;
 public abstract class Declaration extends AbstractSyntaxTree
 {
      private Identifier identifier;
+     private Type type;
 
-     public Declaration(String type, String identifier)
+     public Declaration(Identifier identifier, Type type)
      {
-          this.identifier = new Identifier(type, identifier);
+          this.identifier = identifier;
+          this.type = type;
      }
 
-     public String getType()
-     {
-          return identifier.getType();
+     public Type getType() {
+          return type;
      }
 
      public Identifier getIdentifier()

@@ -1,9 +1,7 @@
 package parser.grammar;
 
+import ast.*;
 import parser.Parser;
-import ast.Declaration;
-import ast.Declarations;
-import ast.VariableDeclaration;
 import tokens.Token;
 import tokens.TokenKind;
 
@@ -17,10 +15,10 @@ public class ArgListVisitor implements GrammarVisitor<Declarations>
                if (parser.isCurrentTokenOfKind(TokenKind.COMMA))
                     parser.next();
                Token typeToken = parser.getCurrentToken();
-               parser.next();
-               Token identifierToken = parser.getCurrentToken();
-               parser.accept(TokenKind.IDENTIFIER);
-               Declaration declaration = new VariableDeclaration(typeToken.spelling, identifierToken.spelling);
+               Type type = Type.getType(typeToken.spelling);
+               parser.accept(TokenKind.HP,TokenKind.MANA);
+               Identifier identifier = parser.accept(new IdentifierVisitor());
+               Declaration declaration = new VariableDeclaration(identifier, type);
                argList.addDeclaration(declaration);
           } while (parser.isCurrentTokenOfKind(TokenKind.COMMA));
 

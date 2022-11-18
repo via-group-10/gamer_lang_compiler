@@ -48,9 +48,8 @@ public class OneStatementVisitor implements GrammarVisitor<Statement>
                }
                case FEED -> {
                     parser.next();
-                    Token token = parser.getCurrentToken();
-                    parser.accept(TokenKind.IDENTIFIER);
-                    statement = new FeedStatement(token.spelling);
+                    Identifier identifier = parser.accept(new IdentifierVisitor());
+                    statement = new FeedStatement(identifier);
                     parser.accept(TokenKind.TRIPLEEXCLAMATIONMARK);
                }
                case BUFF, IDENTIFIER, INTEGERLITERAL, CHARACTERLITERAL, LEFTPAREN, OPERATOR -> {

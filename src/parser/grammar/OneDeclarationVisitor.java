@@ -15,21 +15,22 @@ public class OneDeclarationVisitor implements GrammarVisitor<Declaration>
           if (parser.isCurrentTokenOfKind(TokenKind.HP, TokenKind.MANA))
           {
                Token typeToken = parser.getCurrentToken();
+               Type type = Type.getType(typeToken.spelling);
                parser.accept(TokenKind.HP,TokenKind.MANA);
-               Token identifier =  parser.getCurrentToken();
-               parser.accept(TokenKind.IDENTIFIER);
+               Identifier identifier =  parser.accept(new IdentifierVisitor());
                parser.accept(TokenKind.TRIPLEEXCLAMATIONMARK);
-               declaration = new VariableDeclaration(typeToken.spelling, identifier.spelling);
+               declaration = new VariableDeclaration(identifier, type);
           }
           else if (parser.isCurrentTokenOfKind(TokenKind.NPC))
           {
                parser.accept(TokenKind.NPC);
 
-               Token tokenType = parser.getCurrentToken();
-               parser.accept(TokenKind.HP, TokenKind.MANA);
-               Token identifier = parser.getCurrentToken();
-               parser.accept(TokenKind.IDENTIFIER);
-               FunctionDeclaration funcDeclaration = new FunctionDeclaration(tokenType.spelling, identifier.spelling);
+               Token typeToken = parser.getCurrentToken();
+               Type type = Type.getType(typeToken.spelling);
+               parser.accept(TokenKind.HP,TokenKind.MANA);
+               Identifier identifier =  parser.accept(new IdentifierVisitor());
+
+               FunctionDeclaration funcDeclaration = new FunctionDeclaration(identifier, type);
 
                if (parser.isCurrentTokenOfKind(TokenKind.LEFTPAREN))
                {

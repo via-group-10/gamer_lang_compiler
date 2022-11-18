@@ -2,9 +2,9 @@ package ast;
 
 public class VariableDeclaration extends Declaration
 {
-     public VariableDeclaration(String type, String identifier)
+     public VariableDeclaration(Identifier identifier, Type type)
      {
-          super(type, identifier);
+          super(identifier, type);
      }
 
      @Override

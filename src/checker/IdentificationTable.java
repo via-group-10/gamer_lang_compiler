@@ -4,12 +4,12 @@ import ast.Declaration;
 
 import java.util.Vector;
 
-public class IdentifierTable {
-    private Vector<IdentifierId> table = new Vector<IdentifierId>();
+public class IdentificationTable {
+    private Vector<IdentificationEntry> table = new Vector<IdentificationEntry>();
     private int level = 0;
 
 
-    public IdentifierTable()
+    public IdentificationTable()
     {
 
     }
@@ -17,18 +17,18 @@ public class IdentifierTable {
 
     public void enter( String id, Declaration attr )
     {
-        IdentifierId entry = find( id );
+        IdentificationEntry entry = find( id );
 
         if( entry != null && entry.level == level )
             System.out.println( id + " declared twice" );
         else
-            table.add( new IdentifierId( level, id, attr ) );
+            table.add( new IdentificationEntry( level, id, attr ) );
     }
 
 
     public Declaration retrieve( String id )
     {
-        IdentifierId entry = find( id );
+        IdentificationEntry entry = find( id );
 
         if( entry != null )
             return entry.attr;
@@ -39,23 +39,24 @@ public class IdentifierTable {
 
     public void openScope()
     {
+        //add new scope
         ++level;
     }
 
 
     public void closeScope()
     {
+        //remove scope and all identifiers from that scope
         int pos = table.size() - 1;
         while( pos >= 0 && table.get(pos).level == level ) {
             table.remove( pos );
             pos--;
         }
-
         level--;
     }
 
 
-    private IdentifierId find( String id )
+    private IdentificationEntry find(String id )
     {
         for( int i = table.size() - 1; i >= 0; i-- )
             if( table.get(i).id.equals( id ) )

@@ -1,8 +1,7 @@
 package parser.grammar;
 
+import ast.*;
 import parser.Parser;
-import ast.AbstractSyntaxTree;
-import ast.Block;
 import tokens.TokenKind;
 
 public class BlockVisitor implements GrammarVisitor<Block>
@@ -10,8 +9,8 @@ public class BlockVisitor implements GrammarVisitor<Block>
      @Override
      public Block visit(Parser parser)
      {
-          AbstractSyntaxTree declarations = null;
-          AbstractSyntaxTree statements;
+          Declarations declarations = null;
+          Statements statements;
 
           if (parser.isCurrentTokenOfKind(TokenKind.INVENTORY))
           {

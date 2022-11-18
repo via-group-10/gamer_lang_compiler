@@ -5,7 +5,15 @@ public class FunctionExpression extends Expression
      private Identifier identifier;
      private ExpressionList arguments;
 
-     public FunctionDeclaration decl;
+     public FunctionDeclaration getFunctionDeclaration() {
+          return functionDeclaration;
+     }
+
+     public void setFunctionDeclaration(FunctionDeclaration functionDeclaration) {
+          this.functionDeclaration = functionDeclaration;
+     }
+
+     private FunctionDeclaration functionDeclaration;
 
 
      public FunctionExpression(Identifier identifier, ExpressionList arguments)

@@ -27,6 +27,6 @@ public class UnaryExpression extends Expression
 
      @Override
      public Object accept(AbstractSyntaxTreeVisitor v, Object arg) {
-          return null;
+          return v.visit(this, arg);
      }
 }

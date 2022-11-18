@@ -9,6 +9,6 @@ public class IdentifierVisitor implements GrammarVisitor<Identifier> {
     public Identifier visit(Parser parser) {
         var idTokenSpelling = parser.getCurrentToken().spelling;
         parser.accept(TokenKind.IDENTIFIER);
-        return new Identifier(null, idTokenSpelling);
+        return new Identifier(idTokenSpelling);
     }
 }

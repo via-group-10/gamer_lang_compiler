@@ -6,7 +6,6 @@ public class IntegerLiteralExpression extends Expression
 
      public IntegerLiteralExpression(IntegerLiteral integer)
      {
-
           this.integer = integer;
      }
 
@@ -17,6 +16,6 @@ public class IntegerLiteralExpression extends Expression
 
      @Override
      public Object accept(AbstractSyntaxTreeVisitor v, Object arg) {
-          return null;
+          return v.visit(this, arg);
      }
 }

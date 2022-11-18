@@ -2,21 +2,23 @@ package ast;
 
 public class Identifier extends Terminal
 {
-     private String type;
+     private Declaration declaration;
 
-     public Identifier(String type, String name)
+     public Identifier(String name)
      {
           super(name);
-          this.type = type;
      }
 
-     public String getType()
-     {
-          return type;
+     public void setDeclaration(Declaration declaration) {
+          this.declaration = declaration;
+     }
+
+     public Declaration getDeclaration() {
+          return declaration;
      }
 
      @Override
      public Object accept(AbstractSyntaxTreeVisitor v, Object arg) {
-          return null;
+          return v.visit(this, null);
      }
 }

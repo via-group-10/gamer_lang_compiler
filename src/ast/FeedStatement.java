@@ -3,9 +3,9 @@ package ast;
 public class FeedStatement extends Statement
 {
      private Identifier identifier;
-     public FeedStatement(String identifier)
+     public FeedStatement(Identifier identifier)
      {
-          this.identifier = new Identifier(null, identifier);
+          this.identifier = identifier;
      }
 
      public Identifier getIdentifier()
