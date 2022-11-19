@@ -1,5 +1,7 @@
 package parser.ast;
 
+import java.util.ArrayList;
+
 public class UnaryExpression extends Expression
 {
      private Operator operator;
@@ -23,5 +25,13 @@ public class UnaryExpression extends Expression
 
      public Operator getOperator() {
           return operator;
+     }
+
+     @Override
+     public ArrayList<AbstractSyntaxTree> getNodes(){
+          ArrayList<AbstractSyntaxTree> nodeList = new ArrayList<>();
+          nodeList.add(getExpression());
+          nodeList.add(getOperator());
+          return nodeList;
      }
 }

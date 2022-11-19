@@ -1,5 +1,7 @@
 package parser.ast;
 
+import java.util.ArrayList;
+
 public class FunctionDeclaration extends Declaration
 {
      private Declarations arguments;
@@ -39,5 +41,15 @@ public class FunctionDeclaration extends Declaration
      public Expression getMvpExpression()
      {
           return mvpExpression;
+     }
+
+     @Override
+     public ArrayList<AbstractSyntaxTree> getNodes(){
+          ArrayList<AbstractSyntaxTree> nodeList = new ArrayList<>();
+          nodeList.add(getArguments());
+          nodeList.add(getBlock());
+          nodeList.add(getIdentifier());
+          nodeList.add(getMvpExpression());
+          return nodeList;
      }
 }

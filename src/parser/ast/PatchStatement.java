@@ -1,5 +1,7 @@
 package parser.ast;
 
+import java.util.ArrayList;
+
 public class PatchStatement extends Statement
 {
      private Expression expression;
@@ -19,5 +21,13 @@ public class PatchStatement extends Statement
      public Statements getStatements()
      {
           return statements;
+     }
+
+     @Override
+     public ArrayList<AbstractSyntaxTree> getNodes(){
+          ArrayList<AbstractSyntaxTree> nodeList = new ArrayList<>();
+          nodeList.add(getStatements());
+          nodeList.add(getExpression());
+          return nodeList;
      }
 }

@@ -1,5 +1,7 @@
 package parser.ast;
 
+import java.util.ArrayList;
+
 public class BinaryExpression extends Expression
 {
     private Expression expressionLeft;
@@ -22,5 +24,14 @@ public class BinaryExpression extends Expression
 
     public Expression getExpressionRight() {
         return expressionRight;
+    }
+
+    @Override
+    public ArrayList<AbstractSyntaxTree> getNodes(){
+        ArrayList<AbstractSyntaxTree> nodeList = new ArrayList<>();
+        nodeList.add(getExpressionLeft());
+        nodeList.add(getExpressionRight());
+        nodeList.add(getOperator());
+        return  nodeList;
     }
 }

@@ -1,5 +1,7 @@
 package parser.ast;
 
+import java.util.ArrayList;
+
 public class FunctionExpression extends Expression
 {
      private Identifier identifier;
@@ -24,5 +26,13 @@ public class FunctionExpression extends Expression
      public ExpressionList getArguments()
      {
           return arguments;
+     }
+
+     @Override
+     public ArrayList<AbstractSyntaxTree> getNodes(){
+          ArrayList<AbstractSyntaxTree> nodeList = new ArrayList<>();
+          nodeList.add(getArguments());
+          nodeList.add(getIdentifier());
+          return nodeList;
      }
 }

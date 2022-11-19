@@ -19,10 +19,12 @@ public class Compiler
           if (fc.showOpenDialog(null) == JFileChooser.APPROVE_OPTION)
           {
                SourceFile sourceFile = new SourceFile(fc.getSelectedFile().getAbsolutePath());
-               Scanner s = new Scanner(sourceFile);
-               Parser p = new Parser(s);
-               AbstractSyntaxTree ast = p.parseProgram();
-               AbstractSyntaxTreeViewer astv = new AbstractSyntaxTreeViewer(ast);
+               Scanner scanner = new Scanner(sourceFile);
+               Parser parser = new Parser(scanner);
+               AbstractSyntaxTree ast = parser.parseProgram();
+
+               AbstractSyntaxTreeViewer viewer = new AbstractSyntaxTreeViewer(ast);
+               AbstractSyntaxTreePrinter printer = new AbstractSyntaxTreePrinter(ast);
 
           }
      }

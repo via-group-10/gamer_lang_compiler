@@ -20,4 +20,13 @@ public class ExpressionList extends AbstractSyntaxTree
      {
           return allExpressions;
      }
+
+     @Override
+     public ArrayList<AbstractSyntaxTree> getNodes(){
+          ArrayList<AbstractSyntaxTree> nodeList = new ArrayList<>();
+          for (Expression expression: getAllExpressions()) {
+               nodeList.add((AbstractSyntaxTree) expression);
+          }
+          return nodeList;
+     }
 }

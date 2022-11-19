@@ -20,4 +20,13 @@ public class Statements extends AbstractSyntaxTree
      {
           return statements;
      }
+
+     @Override
+     public ArrayList<AbstractSyntaxTree> getNodes(){
+          ArrayList<AbstractSyntaxTree> nodeList = new ArrayList<>();
+          for (Statement statement: getStatements()) {
+               nodeList.add((AbstractSyntaxTree) statement);
+          }
+          return nodeList;
+     }
 }

@@ -20,4 +20,13 @@ public class Declarations extends AbstractSyntaxTree
      {
           allDeclarations.add(declaration);
      }
+
+     @Override
+     public ArrayList<AbstractSyntaxTree> getNodes(){
+          ArrayList<AbstractSyntaxTree> nodeList = new ArrayList<>();
+          for (Declaration declaration: getAllDeclarations()) {
+               nodeList.add((AbstractSyntaxTree) declaration);
+          }
+          return nodeList;
+     }
 }

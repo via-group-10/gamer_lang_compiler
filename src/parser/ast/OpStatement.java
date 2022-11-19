@@ -1,5 +1,7 @@
 package parser.ast;
 
+import java.util.ArrayList;
+
 public class OpStatement extends Statement
 {
      private Expression comparisonExpression;
@@ -33,5 +35,14 @@ public class OpStatement extends Statement
      public Statements getPveStatements()
      {
           return pveStatements;
+     }
+
+     @Override
+     public ArrayList<AbstractSyntaxTree> getNodes(){
+          ArrayList<AbstractSyntaxTree> nodeList = new ArrayList<>();
+          nodeList.add(getPveStatements());
+          nodeList.add(getPvpStatements());
+          nodeList.add(getComparisonExpression());
+          return nodeList;
      }
 }

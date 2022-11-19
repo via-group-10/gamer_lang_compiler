@@ -1,5 +1,7 @@
 package parser.ast;
 
+import java.util.ArrayList;
+
 public abstract class Terminal extends AbstractSyntaxTree
 {
     private String name;
@@ -10,5 +12,11 @@ public abstract class Terminal extends AbstractSyntaxTree
 
     public String getName() {
         return name;
+    }
+
+    @Override
+    public ArrayList<AbstractSyntaxTree> getNodes(){
+        ArrayList<AbstractSyntaxTree> nodeList = new ArrayList<>();
+        return null;
     }
 }
