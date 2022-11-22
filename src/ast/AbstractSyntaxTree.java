@@ -2,6 +2,6 @@ package ast;
 
 public abstract class AbstractSyntaxTree
 {
-    public abstract Object accept( AbstractSyntaxTreeVisitor v, Object arg );
+    public abstract Object visit(AbstractSyntaxTreeVisitor v, Object arg );
 
 }

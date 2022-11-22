@@ -35,7 +35,7 @@ public class Block extends AbstractSyntaxTree
      }
 
      @Override
-     public Object accept(AbstractSyntaxTreeVisitor visitor, Object arg) {
+     public Object visit(AbstractSyntaxTreeVisitor visitor, Object arg) {
           //logika blocku...
           return visitor.visit(this, arg);
      }

@@ -1,0 +1,6 @@
+inventory
+  hp number !!!
+  hp numberSquared !!!
+glhf
+  chat 589 !!!
+RAGEQUIT

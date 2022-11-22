@@ -8,7 +8,7 @@ public class CharacterLiteral extends Terminal
     }
 
     @Override
-    public Object accept(AbstractSyntaxTreeVisitor v, Object arg) {
+    public Object visit(AbstractSyntaxTreeVisitor v, Object arg) {
         return v.visit(this, arg);
     }
 }

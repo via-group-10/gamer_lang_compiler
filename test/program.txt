@@ -2,7 +2,7 @@ inventory
   hp number !!!
   hp numberSquared !!!
 glhf
-  feed number !!!
+  number = 7!!!
   numberSquared = number * number !!!
   chat numberSquared !!!
 RAGEQUIT

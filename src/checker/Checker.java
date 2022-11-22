@@ -2,22 +2,20 @@ package checker;
 
 import ast.*;
 import exceptions.ContextualException;
-import tokens.TokenKind;
 
 import java.util.Vector;
-import java.util.function.Function;
 
 public class Checker implements AbstractSyntaxTreeVisitor {
     private IdentificationTable identificationTable = new IdentificationTable();
 
-    public void check(Program p) {
-        p.accept(this, null);
+    public void check(Program program) {
+        program.visit(this, null);
     }
 
     @Override
     public Object visit(Program program, Object arg) {
         identificationTable.openScope();
-        program.getBlock().accept(this, arg);
+        program.getBlock().visit(this, arg);
         identificationTable.closeScope();
         return null;
     }
@@ -25,36 +23,36 @@ public class Checker implements AbstractSyntaxTreeVisitor {
     @Override
     public Object visit(Block block, Object arg) {
         if (block.hasDeclarations())
-            block.getDeclarations().accept(this, null);
-        block.getStatements().accept(this, null);
+            block.getDeclarations().visit(this, null);
+        block.getStatements().visit(this, null);
         return null;
     }
 
     @Override
     public Object visit(Declarations declarations, Object arg) {
         for (Declaration declaration : declarations.getAllDeclarations())
-            declaration.accept(this, null);
+            declaration.visit(this, null);
 
         return null;
     }
 
     @Override
     public Object visit(VariableDeclaration variableDeclaration, Object arg) {
-        String identifierName = (String) variableDeclaration.getIdentifier().accept(this, null);
+        String identifierName = (String) variableDeclaration.getIdentifier().visit(this, null);
         identificationTable.enter(identifierName, variableDeclaration);
         return null;
     }
 
     @Override
     public Object visit(FunctionDeclaration functionDeclaration, Object arg) {
-        String id = (String) functionDeclaration.getIdentifier().accept(this, null);
+        String id = (String) functionDeclaration.getIdentifier().visit(this, null);
 
         identificationTable.enter(id, functionDeclaration);
         identificationTable.openScope();
 
-        functionDeclaration.getArguments().accept(this, null);
-        functionDeclaration.getBlock().accept(this, null);
-        Type mvpType = (Type) functionDeclaration.getMvpExpression().accept(this, null);
+        functionDeclaration.getArguments().visit(this, null);
+        functionDeclaration.getBlock().visit(this, null);
+        Type mvpType = (Type) functionDeclaration.getMvpExpression().visit(this, null);
 
         identificationTable.closeScope();
 
@@ -67,19 +65,19 @@ public class Checker implements AbstractSyntaxTreeVisitor {
     @Override
     public Object visit(Statements statements, Object arg) {
         for (Statement statement : statements.getStatements())
-            statement.accept(this, null);
+            statement.visit(this, null);
         return null;
     }
     @Override
     public Object visit(ChatStatement chatStatement, Object arg) {
-        chatStatement.getExpression().accept(this, null);
+        chatStatement.getExpression().visit(this, null);
         return null;
     }
 
     @Override
     //tiez neviem ci dobre
     public Object visit(FeedStatement feedStatement, Object arg) {
-        String identifierName = (String) feedStatement.getIdentifier().accept(this, null);
+        String identifierName = (String) feedStatement.getIdentifier().visit(this, null);
         Declaration declaration = identificationTable.retrieve(identifierName);
         feedStatement.getIdentifier().setDeclaration(declaration);
         return null;
@@ -87,23 +85,23 @@ public class Checker implements AbstractSyntaxTreeVisitor {
 
     @Override
     public Object visit(OpStatement opStatement, Object arg) {
-        opStatement.getComparisonExpression().accept(this, null);
-        opStatement.getPvpStatements().accept(this, null);
-        opStatement.getPveStatements().accept(this, null);
+        opStatement.getComparisonExpression().visit(this, null);
+        opStatement.getPvpStatements().visit(this, null);
+        opStatement.getPveStatements().visit(this, null);
         return null;
     }
 
     @Override
     public Object visit(PatchStatement patchStatement, Object arg) {
-        patchStatement.getExpression().accept(this, null);
-        patchStatement.getStatements().accept(this, null);
+        patchStatement.getExpression().visit(this, null);
+        patchStatement.getStatements().visit(this, null);
 
         return null;
     }
 
     @Override
     public Object visit(ExpressionStatement expressionStatement, Object arg) {
-        expressionStatement.getExpression().accept(this, null);
+        expressionStatement.getExpression().visit(this, null);
         return null;
     }
 
@@ -111,15 +109,15 @@ public class Checker implements AbstractSyntaxTreeVisitor {
     public Object visit(ExpressionList expressionList, Object arg) {
         Vector<Type> types = new Vector<>();
         for (Expression expr : expressionList.getAllExpressions()) {
-            types.add((Type)expr.accept(this, null));
+            types.add((Type)expr.visit(this, null));
         }
         return types;
     }
 
     @Override
     public Object visit(FunctionExpression functionExpression, Object arg) {
-        String identifierName = (String) functionExpression.getIdentifier().accept(this, null);
-        Vector<Type> t = (Vector<Type>) functionExpression.getArguments().accept(this, null);
+        String identifierName = (String) functionExpression.getIdentifier().visit(this, null);
+        Vector<Type> t = (Vector<Type>) functionExpression.getArguments().visit(this, null);
 
         Declaration d = identificationTable.retrieve(identifierName);
         if (d == null) {
@@ -147,7 +145,7 @@ public class Checker implements AbstractSyntaxTreeVisitor {
 
     @Override
     public Object visit(VariableExpression variableExpression, Object arg) {
-        String identifierName = (String) variableExpression.getIdentifier().accept(this, null);
+        String identifierName = (String) variableExpression.getIdentifier().visit(this, null);
         Declaration  declaration = identificationTable.retrieve(identifierName);
         if( declaration == null ) {
             throw new ContextualException(identifierName + " is not declared");
@@ -164,8 +162,8 @@ public class Checker implements AbstractSyntaxTreeVisitor {
 
     @Override
     public Object visit(UnaryExpression unaryExpression, Object arg) {
-        Type t = (Type) unaryExpression.getExpression().accept(this, null);
-        String operator = (String) unaryExpression.getOperator().accept(this, null);
+        Type t = (Type) unaryExpression.getExpression().visit(this, null);
+        String operator = (String) unaryExpression.getOperator().visit(this, null);
 
         if (operator.equals("buff") && t == Type.HP) {
             unaryExpression.setType(t);
@@ -179,10 +177,10 @@ public class Checker implements AbstractSyntaxTreeVisitor {
     //TODO Chyba logika, ale to uz nebola predtym. -Paco 2k22
     @Override
     public Object visit(BinaryExpression binaryExpression, Object arg) {
-        Type t1 = (Type) binaryExpression.getExpressionLeft().accept(this, null);
-        Type t2 = (Type) binaryExpression.getExpressionRight().accept(this, null);
+        Type t1 = (Type) binaryExpression.getExpressionLeft().visit(this, null);
+        Type t2 = (Type) binaryExpression.getExpressionRight().visit(this, null);
 
-        String operator = (String) binaryExpression.getOperator().accept(this, null);
+        String operator = (String) binaryExpression.getOperator().visit(this, null);
 
         if (!t1.equals(t2)) {
             throw new ContextualException("Left side expression type(" + t1.getSpelling() + ") does not match type on the right(" + t2.getSpelling() + ").");
