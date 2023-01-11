@@ -11,6 +11,11 @@ public class FunctionDeclaration extends Declaration
           super(identifier, type);
      }
 
+     public boolean hasArguments()
+     {
+          return arguments != null;
+     }
+
      public Declarations getArguments()
      {
           return arguments;

@@ -50,7 +50,8 @@ public class Checker implements AbstractSyntaxTreeVisitor {
         identificationTable.enter(id, functionDeclaration);
         identificationTable.openScope();
 
-        functionDeclaration.getArguments().visit(this, null);
+        if (functionDeclaration.hasArguments())
+            functionDeclaration.getArguments().visit(this, null);
         functionDeclaration.getBlock().visit(this, null);
         Type mvpType = (Type) functionDeclaration.getMvpExpression().visit(this, null);
 
@@ -132,7 +133,7 @@ public class Checker implements AbstractSyntaxTreeVisitor {
             // Check input expression list types match declared types
             for (int i = 0; i < t.size(); i++) {
                 Declaration dec = f.getArguments().getAllDeclarations().get(i);
-                if (dec.getType() == t.get(i))
+                if (dec.getType() != t.get(i))
                     throw new ContextualException("Function parameter: " + dec.getIdentifier().getName() + ", does not match type: " + t.get(i).getSpelling());
             }
         }
